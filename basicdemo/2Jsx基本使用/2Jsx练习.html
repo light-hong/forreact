@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Jsx练习</title>
+	</head>
+	<body>
+		<h2>前端技术栈</h2>
+		<div id="example1"></div>
+
+		<!--
+		    注意区分：【js语句(代码)】 与 【js表达式】:
+		      1.表达式：一个表达式会产生一个值,它可以放在任何需要一个值的地方
+		        举例：a
+		             3 + b
+		             demo("a", "b")
+		             arr.map()
+		             function foo() {}
+		             .....等
+		      2.语句：语句可以理解成一个行为.循环语句、if语句，都是典型的语句
+		        举例：
+		             if(){}
+		             for(){}
+		             try {} catch(err){}
+		             ......等
+		-->
+
+		<!--引入react核心库-->
+		<script type="text/javascript" src="../js/react.development.js"></script>
+		<!--引入操作react操作DOM库-->
+		<script type="text/javascript" src="../js/react-dom.development.js"></script>
+		<!--引入babel-->
+		<script type="text/javascript" src="../js/babel.min.js"></script>
+
+
+		<script type="text/babel">
+			//定义数据
+		  let arr = ['Javascript','Typescript','Vue','React']
+		  //let arr2 = [<li>A</li>,<li>A</li>,<li>A</li>,<li>A</li>]
+		  
+		  //1.创建虚拟DOM
+		  let vDOM = (
+		    <ul>
+		      {
+		        arr.map((item, index) => {return <li key={index}>{item}</li>})
+		      }
+		    </ul>
+		  )
+		  
+		  //2.渲染虚拟DOM到页面
+		  ReactDOM.render(vDOM,document.getElementById('example1'))
+		</script>
+	</body>
+</html>

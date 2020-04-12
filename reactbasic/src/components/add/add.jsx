@@ -1,6 +1,31 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class add extends Component {
+
+  static propTypes = {
+    addComment: PropTypes.func.isRequired
+  }
+
+  addComment = () => {
+    const userName = this.refs.username.value
+    const content = this.refs.content.value
+    if (!userName || !content) {
+      return
+    }
+
+    const comment = {
+      id: Date.now(),
+      userName,
+      content
+    }
+
+    this.props.addComment(comment)
+
+    this.refs.username.value = ''
+    this.refs.content.value = ''
+  }
+
   render() {
     return (
       <div className="col-md-4">

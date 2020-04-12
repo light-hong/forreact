@@ -4,7 +4,38 @@ import Add from './components/add/add'
 import List from './components/list/list'
 
 export default class App extends Component {
+
+  state= {
+    comments: [
+      {
+        id: 1,
+        userName: 'Tom',
+        content: 'React is so easy!'
+      },
+      {
+        id: 2,
+        userName: 'Jery',
+        content: 'React is so so!'
+      }
+    ]
+  }
+
+  addComment = (comment) => {
+    const { comments } = this.state
+    this.setState({
+      comments: [comment, ...comments]
+    })
+  }
+
+  delComment = (index) => {
+    const { comments } = this.state
+    this.setState({
+      comments: comments.filter((c, i) => i !== index)
+    })
+  }
+
   render() {
+    const { comments } = this.state
     return (
       <div>
         <header className="site-header jumbotron">
@@ -17,8 +48,8 @@ export default class App extends Component {
           </div>
         </header>
         <div className="container">
-          <Add/>
-          <List />
+          <Add addComment={this.addComment}/>
+          <List comments={comments} delComment={this.delComment} />
         </div>
       </div>
     )
